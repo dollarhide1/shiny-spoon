@@ -1,0 +1,24 @@
+# Netlify configuration — Nursing Study Style
+# This site is plain static HTML, so there is no build step.
+
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/demo"
+  to = "/demo.html"
+  status = 200
+
+# Sensible default security + caching headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

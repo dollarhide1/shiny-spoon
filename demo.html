@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Demo — Find Your Nursing Study Style</title>
+<meta name="description" content="Free 2-minute demo: take the quiz and discover your nursing learning style. Unlock the full strategies + printable guide for $12.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#FBF8FF;--card:#FFFFFF;--ink:#39334F;--ink-soft:#6F698A;--ink-faint:#A29DBA;--line:#ECE7F6;
+ --lav:#B7A6EE;--lav-deep:#7A63C7;--lav-soft:#EFEAFC;
+ --sky:#9CCDF2;--sky-deep:#4E92C9;--sky-soft:#E7F2FC;
+ --mint:#92DEBC;--mint-deep:#3C9E76;--mint-soft:#E4F7EE;
+ --peach:#FFC3A0;--peach-deep:#E0815A;--peach-soft:#FFEEE3;
+ --butter:#FBE08C;
+ --radius:26px;--radius-sm:18px;--radius-pill:999px;
+ --shadow:0 14px 38px -22px rgba(95,75,160,.42);--shadow-lift:0 22px 50px -24px rgba(95,75,160,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;}
+.b1{width:400px;height:400px;background:var(--lav);top:-120px;left:-80px;animation:f1 22s ease-in-out infinite;}
+.b2{width:340px;height:340px;background:var(--peach);top:120px;right:-110px;animation:f2 26s ease-in-out infinite;}
+.b3{width:320px;height:320px;background:var(--mint);bottom:-90px;left:16%;animation:f1 30s ease-in-out infinite reverse;}
+.b4{width:280px;height:280px;background:var(--sky);bottom:10%;right:6%;animation:f2 24s ease-in-out infinite;}
+@keyframes f1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.08);}}
+@keyframes f2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-36px,34px) scale(1.06);}}
+.wrap{position:relative;z-index:1;}
+
+.topbar{backdrop-filter:blur(12px);background:rgba(251,248,255,.72);border-bottom:1.5px solid var(--line);}
+.topbar-inner{max-width:760px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--ink);text-decoration:none;}
+.brand .mark{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--lav),var(--peach));display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 24px;border:none;border-radius:var(--radius-pill);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;text-decoration:none;}
+.btn-sm{min-height:40px;padding:9px 18px;font-size:14px;}
+.btn-primary{background:linear-gradient(135deg,var(--lav),var(--lav-deep));color:#fff;box-shadow:0 12px 26px -12px var(--lav-deep);}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 18px 34px -14px var(--lav-deep);}
+.btn-peach{background:linear-gradient(135deg,var(--peach),var(--peach-deep));color:#fff;box-shadow:0 12px 26px -12px var(--peach-deep);}
+.btn-peach:hover{transform:translateY(-2px) scale(1.02);}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+.btn-ghost:hover{border-color:var(--lav);color:var(--lav-deep);transform:translateY(-2px);}
+
+.container{max-width:660px;margin:0 auto;padding:40px 22px 30px;}
+.intro{text-align:center;margin-bottom:30px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);color:var(--lav-deep);font-size:12.5px;font-weight:600;letter-spacing:.04em;padding:7px 15px;border-radius:var(--radius-pill);margin-bottom:18px;box-shadow:var(--shadow);}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--mint-deep);box-shadow:0 0 0 4px var(--mint-soft);}
+.intro h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,5vw,42px);letter-spacing:-.02em;line-height:1.08;margin-bottom:10px;}
+.intro h1 .sw{position:relative;color:var(--lav-deep);white-space:nowrap;}
+.intro h1 .sw::after{content:"";position:absolute;left:-3px;right:-3px;bottom:.05em;height:.32em;background:var(--butter);border-radius:var(--radius-pill);z-index:-1;transform:rotate(-1.2deg);}
+.intro p{font-size:15.5px;color:var(--ink-soft);max-width:460px;margin:0 auto;}
+.intro .free{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mint-deep);background:var(--mint-soft);padding:5px 13px;border-radius:var(--radius-pill);}
+
+/* quiz */
+.quiz-card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 30px 28px;}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.track{flex:1;height:10px;background:var(--lav-soft);border-radius:var(--radius-pill);overflow:hidden;}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--mint),var(--lav));border-radius:var(--radius-pill);transition:width .5s cubic-bezier(.34,1.56,.64,1);}
+.q-count{font-size:13px;font-weight:600;color:var(--ink-faint);white-space:nowrap;}
+.q-stage{transition:opacity .26s ease,transform .26s ease;}
+.q-stage.out{opacity:0;transform:translateX(-14px);}
+.q-text{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(20px,3vw,25px);line-height:1.28;letter-spacing:-.01em;margin-bottom:20px;}
+.opts{display:grid;gap:11px;}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:15px 17px;font-family:'DM Sans',sans-serif;font-size:15.5px;color:var(--ink-soft);cursor:pointer;transition:transform .16s,border-color .16s,background .16s,color .16s,box-shadow .16s;}
+.opt .key{flex-shrink:0;width:30px;height:30px;border-radius:10px;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink-faint);transition:all .16s;}
+.opt:hover{border-color:var(--lav);background:var(--lav-soft);color:var(--ink);transform:translateX(3px);}
+.opt:hover .key{border-color:var(--lav);color:var(--lav-deep);}
+.opt.sel{border-color:var(--lav-deep);background:var(--lav-soft);color:var(--ink);box-shadow:0 8px 20px -14px var(--lav-deep);}
+.opt.sel .key{background:linear-gradient(135deg,var(--lav),var(--lav-deep));border-color:transparent;color:#fff;}
+.q-foot{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
+.ghost-back{background:none;border:none;color:var(--ink-faint);font-size:14px;font-weight:600;cursor:pointer;padding:8px 4px;transition:color .18s;}
+.ghost-back:hover{color:var(--ink);}
+.ghost-back[hidden]{visibility:hidden;}
+.q-hint{text-align:center;font-size:12.5px;color:var(--ink-faint);margin-top:14px;}
+
+/* result */
+.pop{animation:pop .5s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(16px);}to{opacity:1;transform:none;}}
+.sticker{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 30px 30px;text-align:center;overflow:hidden;margin-bottom:16px;}
+.sticker::before{content:"";position:absolute;inset:0;background:var(--tint,var(--lav-soft));opacity:.5;z-index:0;}
+.sticker>*{position:relative;z-index:1;}
+.badge-emoji{width:82px;height:82px;margin:0 auto 14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;background:#fff;box-shadow:0 12px 28px -14px rgba(95,75,160,.5);border:3px solid var(--accent,var(--lav));animation:wiggle 3.5s ease-in-out infinite;}
+@keyframes wiggle{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+.kicker{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep,var(--lav-deep));background:#fff;padding:5px 14px;border-radius:var(--radius-pill);margin-bottom:13px;}
+.sticker h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(25px,4vw,32px);letter-spacing:-.02em;margin-bottom:4px;}
+.sticker .tag{font-size:15px;font-weight:600;color:var(--accent-deep,var(--lav-deep));margin-bottom:14px;font-style:italic;font-family:'Fraunces',serif;}
+.sticker .blurb{font-size:14.5px;color:var(--ink-soft);max-width:460px;margin:0 auto 24px;}
+.bars{display:grid;gap:11px;text-align:left;max-width:420px;margin:0 auto;}
+.brow{display:flex;align-items:center;gap:12px;}
+.blabel{width:90px;flex-shrink:0;font-size:13px;font-weight:600;color:var(--ink-soft);}
+.btrack{flex:1;height:11px;background:#fff;border-radius:var(--radius-pill);overflow:hidden;box-shadow:inset 0 0 0 1.5px var(--line);}
+.bfill{height:100%;width:0;border-radius:var(--radius-pill);transition:width .9s cubic-bezier(.34,1.56,.64,1);}
+.bpct{width:40px;text-align:right;font-size:13px;font-weight:600;color:var(--ink-faint);}
+
+.tips-card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin-bottom:16px;}
+.tips-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin-bottom:14px;display:flex;align-items:center;gap:9px;}
+.tlist{list-style:none;display:grid;gap:10px;}
+.tlist li{display:flex;gap:12px;font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
+.tlist li .tk{flex-shrink:0;width:24px;height:24px;border-radius:8px;background:var(--accent-soft,var(--lav-soft));color:var(--accent-deep,var(--lav-deep));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px;}
+
+/* locked unlock card */
+.unlock{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;margin-bottom:16px;overflow:hidden;}
+.unlock .locked-list{list-style:none;display:grid;gap:10px;margin-bottom:22px;}
+.unlock .locked-list li{display:flex;gap:11px;font-size:14.5px;color:var(--ink-soft);}
+.unlock .locked-list li .lk{flex-shrink:0;width:24px;height:24px;border-radius:8px;background:var(--lav-soft);color:var(--lav-deep);display:flex;align-items:center;justify-content:center;font-size:12px;}
+.unlock h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-bottom:4px;}
+.unlock .usub{font-size:13.5px;color:var(--ink-faint);margin-bottom:18px;}
+.unlock-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between;background:linear-gradient(135deg,var(--lav-soft),var(--peach-soft));border-radius:var(--radius-sm);padding:18px 20px;}
+.unlock-price{font-family:'Fraunces',serif;font-weight:600;font-size:26px;}
+.unlock-price small{font-size:13px;color:var(--ink-soft);font-family:'DM Sans',sans-serif;font-weight:500;display:block;}
+
+.demo-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+footer{text-align:center;padding:26px 22px 44px;color:var(--ink-faint);font-size:12.5px;}
+footer a{color:var(--ink-soft);text-decoration:none;}
+footer a:hover{color:var(--lav-deep);}
+.disc{max-width:520px;margin:10px auto 0;font-size:11.5px;line-height:1.6;}
+
+@media(max-width:520px){
+ .container{padding:30px 16px 20px;}
+ .quiz-card{padding:24px 18px 22px;}
+ .unlock-cta{flex-direction:column;align-items:stretch;text-align:center;}
+ .unlock-cta .btn{width:100%;}
+ .demo-actions{flex-direction:column;}
+ .demo-actions .btn{width:100%;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+:focus-visible{outline:3px solid var(--lav-deep);outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+
+<div class="atmos" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
+
+<div class="wrap">
+ <div class="topbar">
+  <div class="topbar-inner">
+   <a class="brand" href="index.html"><span class="mark">🧠</span> Nursing Study Style</a>
+   <a class="btn btn-primary btn-sm payhip-buy-button" data-theme="green" data-product="op0TD" href="https://payhip.com/b/op0TD">Get the full guide</a>
+  </div>
+ </div>
+
+ <div class="container">
+  <div class="intro">
+   <span class="eyebrow"><span class="dot"></span> Free demo</span>
+   <h1>Discover your <span class="sw">study style</span></h1>
+   <p>Answer 8 quick scenarios to see how your brain learns best. Takes about two minutes.</p>
+   <span class="free">No sign-up · free to try</span>
+  </div>
+
+  <div id="quizHost"></div>
+  <div id="resultHost"></div>
+ </div>
+
+ <footer>
+  <div>Nursing Study Style · <a href="index.html">Home</a></div>
+  <p class="disc">Free preview of an independent study-skills resource for nursing students. Not affiliated with the NCLEX® or NCSBN, and not medical or academic advice — follow your program's official guidance.</p>
+ </footer>
+</div>
+
+<script>
+const questions=[
+ {q:"You're studying a new disease process. What makes it click?",opts:[
+  {t:"Running a simulation or case where I actually manage the patient",s:"K"},
+  {t:"Drawing a flowchart of how the disease moves through the body",s:"V"},
+  {t:"Talking it through out loud, or watching someone explain it",s:"A"},
+  {t:"Reading the chapter closely and writing detailed notes",s:"R"}]},
+ {q:"Big exam tomorrow. How do you review?",opts:[
+  {t:"Rereading my notes and rewriting key points in my own words",s:"R"},
+  {t:"Practicing NCLEX questions and running skills hands-on",s:"K"},
+  {t:"Making charts, concept maps, and color-coded summaries",s:"V"},
+  {t:"Listening to recordings or teaching it to a classmate",s:"A"}]},
+ {q:"You can't remember how a med works. Your move?",opts:[
+  {t:"Say the name and effects out loud, build a mnemonic to recite",s:"A"},
+  {t:"Write a drug card with everything spelled out in my words",s:"R"},
+  {t:"Practice drawing it up and picture giving it to a patient",s:"K"},
+  {t:"Draw the mechanism — receptor, pathway, effect — step by step",s:"V"}]},
+ {q:"How do you set up your weekly study schedule?",opts:[
+  {t:"A color-coded calendar — I need to see the whole week at a glance",s:"V"},
+  {t:"I keep it loose — I'd rather study active and in the moment",s:"K"},
+  {t:"A written list with topics, times, and checkboxes to tick off",s:"R"},
+  {t:"I talk through my plan with someone or set voice reminders",s:"A"}]},
+ {q:"During lecture, what keeps the most info in?",opts:[
+  {t:"Linking it to skills I've practiced or patients I've seen",s:"K"},
+  {t:"Listening closely and jumping into discussion when I can",s:"A"},
+  {t:"Sketching diagrams and visual cues next to my notes",s:"V"},
+  {t:"Writing everything down in full sentences as it happens",s:"R"}]},
+ {q:"Night before clinical — how do you prep?",opts:[
+  {t:"Writing out my patient's history, meds, and a task list",s:"R"},
+  {t:"Talking through what I expect to happen, out loud or with a friend",s:"A"},
+  {t:"Mentally rehearsing the skills and running the motions",s:"K"},
+  {t:"Drawing a map of my patient's conditions and care plan",s:"V"}]},
+ {q:"You missed an NCLEX question. How do you learn from it?",opts:[
+  {t:"Map out why the right answer's right and where I went wrong",s:"V"},
+  {t:"Write the full rationale in my words and log the mistake",s:"R"},
+  {t:"Talk through my reasoning aloud until it clicks",s:"A"},
+  {t:"Redo similar questions until I get them right every time",s:"K"}]},
+ {q:"Busy week, too much to do. What actually works?",opts:[
+  {t:"Talking it out — with a friend, advisor, or just myself",s:"A"},
+  {t:"Jumping in and doing — I work best moving, not planning",s:"K"},
+  {t:"A visual overview — all my commitments mapped out at once",s:"V"},
+  {t:"A written priority list with specific tasks and deadlines",s:"R"}]}
+];
+const styleData={
+ V:{name:"Visual Learner",emoji:"🗺️",tag:"See it. Map it. Remember it.",accent:"lav",
+  desc:"You retain best when information is organized spatially — diagrams, flowcharts, color, and layout. Your superpower is seeing how everything connects.",
+  tips:["Color-code your notes by body system","Draw pathophysiology flowcharts instead of paragraphs","Use comparison tables for diseases and drug classes"]},
+ A:{name:"Auditory Learner",emoji:"🎙️",tag:"Say it. Hear it. Own it.",accent:"sky",
+  desc:"You learn through hearing and speaking. Lectures, discussion, and talking things out beat silent reading. You're strongest when you explain it to someone.",
+  tips:["Record your notes and replay them on commutes","Take turns teaching in a study group","Say NCLEX rationales out loud as you work"]},
+ R:{name:"Reading / Writing Learner",emoji:"📝",tag:"Write it. Read it. Make it yours.",accent:"mint",
+  desc:"You think through writing. Rewriting notes, building written systems, and reading deeply are how you encode information. Your notes are the best in the cohort.",
+  tips:["Rewrite lecture notes in your own words the same night","Write a full rationale for every NCLEX miss","Build drug cards with details in your own words"]},
+ K:{name:"Kinesthetic Learner",emoji:"🤲",tag:"Do it. Practice it. Own it.",accent:"peach",
+  desc:"You learn by doing. Simulation, practice, and repetition make content stick. Once you've done something, you own it.",
+  tips:["Volunteer to go first in every sim and skills lab","Practice skills until they feel automatic","Walk around while reviewing flashcards or audio"]}
+};
+const accentMap={
+ lav:{deep:"#7A63C7",soft:"#EFEAFC",base:"#B7A6EE"},
+ sky:{deep:"#4E92C9",soft:"#E7F2FC",base:"#9CCDF2"},
+ mint:{deep:"#3C9E76",soft:"#E4F7EE",base:"#92DEBC"},
+ peach:{deep:"#E0815A",soft:"#FFEEE3",base:"#FFC3A0"}
+};
+const PAYHIP="https://payhip.com/b/op0TD";
+
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function setAccent(n,k){var a=accentMap[k];n.style.setProperty('--accent',a.base);n.style.setProperty('--accent-deep',a.deep);n.style.setProperty('--accent-soft',a.soft);}
+
+var cur=0,answers=[],stageEl;
+function buildQuiz(){
+ var host=document.getElementById('quizHost');host.innerHTML='';
+ document.getElementById('resultHost').innerHTML='';
+ var card=el('div','quiz-card');
+ var br=el('div','bar-row');var tr=el('div','track');var fl=el('div','fill');fl.id='qFill';tr.appendChild(fl);br.appendChild(tr);
+ var cnt=el('div','q-count');cnt.id='qCount';br.appendChild(cnt);card.appendChild(br);
+ stageEl=el('div','q-stage');stageEl.id='qStage';card.appendChild(stageEl);
+ var ft=el('div','q-foot');
+ var back=el('button','ghost-back','← Back');back.id='qBack';back.onclick=prevQ;
+ var nx=el('button','btn btn-primary');nx.id='qNext';nx.onclick=nextQ;
+ ft.appendChild(back);ft.appendChild(nx);card.appendChild(ft);
+ var hint=el('div','q-hint','Tip: tap keys 1–4 to answer, Enter for next');card.appendChild(hint);
+ host.appendChild(card);renderQ();
+}
+function renderQ(){
+ var q=questions[cur];
+ document.getElementById('qFill').style.width=Math.round((cur/questions.length)*100)+'%';
+ document.getElementById('qCount').textContent=(cur+1)+' / '+questions.length;
+ document.getElementById('qBack').hidden=(cur===0);
+ document.getElementById('qNext').textContent=(cur===questions.length-1)?'See my style ✨':'Next →';
+ stageEl.innerHTML='';
+ stageEl.appendChild(el('div','q-text',q.q));
+ var opts=el('div','opts');var keys=['A','B','C','D'];
+ q.opts.forEach(function(o,i){
+  var b=el('button','opt'+(answers[cur]===i?' sel':''));b.type='button';
+  b.appendChild(el('span','key',keys[i]));b.appendChild(el('span',null,o.t));
+  b.onclick=function(){pick(i);};opts.appendChild(b);
+ });
+ stageEl.appendChild(opts);
+}
+function pick(i){answers[cur]=i;stageEl.querySelectorAll('.opt').forEach(function(b,j){b.classList.toggle('sel',j===i);});}
+function transition(after){stageEl.classList.add('out');setTimeout(function(){after();stageEl.classList.remove('out');},230);}
+function nextQ(){
+ if(answers[cur]===undefined){var n=document.getElementById('qNext');n.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:280});return;}
+ if(cur<questions.length-1){transition(function(){cur++;renderQ();});}else{showResult();}
+}
+function prevQ(){if(cur>0)transition(function(){cur--;renderQ();});}
+document.addEventListener('keydown',function(e){
+ if(!stageEl||document.getElementById('resultHost').children.length)return;
+ if(['1','2','3','4'].includes(e.key))pick(parseInt(e.key)-1);
+ else if(e.key==='Enter')nextQ();
+ else if(e.key==='Backspace'&&cur>0){e.preventDefault();prevQ();}
+});
+
+function showResult(){
+ var sc={V:0,A:0,R:0,K:0};
+ answers.forEach(function(a,qi){sc[questions[qi].opts[a].s]++;});
+ var top=Object.entries(sc).sort(function(a,b){return b[1]-a[1];})[0][0];
+ var d=styleData[top];var a=accentMap[d.accent];var total=questions.length;
+ document.getElementById('quizHost').innerHTML='';
+ var host=document.getElementById('resultHost');host.innerHTML='';
+ var wrap=el('div','pop');setAccent(wrap,d.accent);
+
+ var st=el('div','sticker');st.style.setProperty('--tint',a.soft);
+ var be=el('div','badge-emoji',d.emoji);be.style.borderColor=a.base;st.appendChild(be);
+ st.appendChild(el('div','kicker','Your study style'));
+ st.appendChild(el('h2',null,d.name));
+ st.appendChild(el('div','tag',d.tag));
+ st.appendChild(el('div','blurb',d.desc));
+ var bars=el('div','bars');
+ [['V','Visual','lav'],['A','Auditory','sky'],['R','Reading/writing','mint'],['K','Kinesthetic','peach']].forEach(function(r){
+  var pct=Math.round((sc[r[0]]/total)*100);
+  var row=el('div','brow');row.appendChild(el('span','blabel',r[1]));
+  var tr=el('div','btrack');var f=el('div','bfill');f.style.background=accentMap[r[2]].base;tr.appendChild(f);row.appendChild(tr);
+  row.appendChild(el('span','bpct',pct+'%'));bars.appendChild(row);
+  setTimeout(function(){f.style.width=pct+'%';},120);
+ });
+ st.appendChild(bars);wrap.appendChild(st);
+
+ var tc=el('div','tips-card');setAccent(tc,d.accent);
+ var h=el('h3');h.appendChild(document.createTextNode('3 quick wins for you '));h.appendChild(el('span',null,'🎯'));tc.appendChild(h);
+ var ul=el('ul','tlist');
+ d.tips.forEach(function(t,i){var li=el('li');li.appendChild(el('span','tk',String(i+1)));li.appendChild(el('span',null,t));ul.appendChild(li);});
+ tc.appendChild(ul);wrap.appendChild(tc);
+
+ var un=el('div','unlock');
+ un.appendChild(el('h3','Want the full playbook?'));
+ un.appendChild(el('div','usub','Your demo shows 3 tips. The full guide goes much deeper — and it prints.'));
+ var ll=el('ul','locked-list');
+ ['Your complete strategy set: study, notes, organization & clinical prep','15+ more tips tailored to your '+d.name+' style','NCLEX prep, clinical, self-care & time-management sections','A one-click printable PDF, personalized to your result'].forEach(function(t){
+  var li=el('li');li.appendChild(el('span','lk','🔒'));li.appendChild(el('span',null,t));ll.appendChild(li);
+ });
+ un.appendChild(ll);
+ var cta=el('div','unlock-cta');
+ var price=el('div','unlock-price');price.innerHTML='$12<small>one-time · lifetime access</small>';
+ var buy=el('a','btn btn-peach payhip-buy-button');buy.href=PAYHIP;buy.setAttribute('data-product','op0TD');buy.setAttribute('data-theme','green');buy.textContent='Unlock the full guide';
+ cta.appendChild(price);cta.appendChild(buy);
+ un.appendChild(cta);wrap.appendChild(un);
+
+ var act=el('div','demo-actions');
+ var re=el('button','btn btn-ghost','↺ Retake quiz');re.onclick=retake;
+ var home=el('a','btn btn-ghost');home.href='index.html';home.textContent='Learn more';
+ act.appendChild(re);act.appendChild(home);wrap.appendChild(act);
+
+ host.appendChild(wrap);
+ if(window.Payhip&&Payhip.Checkout)try{Payhip.Checkout.init();}catch(e){}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function retake(){cur=0;answers=[];buildQuiz();window.scrollTo({top:0,behavior:'smooth'});}
+buildQuiz();
+</script>
+<script src="https://payhip.com/payhip.js"></script>
+</body>
+</html>
